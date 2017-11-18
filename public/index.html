@@ -1,0 +1,116 @@
+
+<!doctype html>
+<html>
+ <head>
+	<meta charset="UTF-8">
+	<title>ANGULARJS App</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap-theme.css">
+	<style>
+	span {margin:5px;}
+  .table-fixed{
+  width: 100%;
+  background-color: #f3f3f3;
+  tbody{
+    height:200px;
+    overflow-y:auto;
+    width: 100%;
+    }
+  thead,tbody,tr,td,th{
+    display:block;
+  }
+	</style>
+ </head>
+ <body ng-app="cartApp">
+
+ <div class="container">
+   <div class="page-header">
+    <h2>Angular With todo Demo</h2>
+   </div>
+ </div>
+
+	<div ng-controller="mainController">
+
+			<div class="container well mtp75">
+				<div class="row"></div>
+				<br>
+
+				<table cellpadding=10 cellspacing=10 border=0 class="table table-fixed">
+					<tr>
+						<th>No.</th>
+						<th>Name</th>
+						<th>User Name</th>
+            <th>Email</th>
+						<th>Address</th>
+						<th>ToDos</th>
+					</tr>
+
+					<tr ng-repeat="user in users">
+						<td>{{$index+1}}</td>
+						<td>{{user.name}}</a></td>
+						<td>{{user.username}}</td>
+            <td>{{user.email}}</td>
+						<td>{{user.address.street}}</td>
+						<td><div ng-click="enableUpdateForm(user.id)" data-toggle="modal" data-target="#userModal" class="btn btn-primary btn-sm glyphicon glyphicon-pencil"></div></td>
+				</table>
+
+				</div> <!-- End OF Row -->
+
+      <div class="container">
+         <!-- Modal -->
+         <div class="modal fade" id="userModal" role="dialog">
+           <div class="modal-dialog">
+
+             <!-- Modal content-->
+             <div class="modal-content">
+               <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+                 <h4 ng-show="enableEditForm" class="modal-title">User Todo</h4>
+                 <h4 ng-show="!enableEditForm" class="modal-title">Add User</h4>
+               </div>
+               <!-- Modal Body -->
+           <div class="modal-body">
+
+             <table cellpadding=10 cellspacing=10 border=0 class="table table-fixed">
+     					<tr>
+     						<th>No.</th>
+     						<th>Title</th>
+     						<th>Status</th>
+     					</tr>
+
+     					<tr ng-repeat="userTodo in userTodos">
+     						<td>{{$index+1}}</td>
+     						<td ng-class="userTodo.completed ? '' : 'strikethrough'">{{userTodo.title}}</a></td>
+     						<td>{{userTodo.completed}}</td>
+     						<td><div ng-click="deleteUser(userTodos.userId)" class="btn btn-danger btn-sm glyphicon glyphicon-remove"></div></td>
+     					</tr>
+              <tr>
+                <input type="text" name="todo" ng-model="title" value="" required><br><br>
+                <button type="button" class="btn btn-success" value="Cancel" ng-click="createUser()" data-dismiss="modal"/>Add</button>
+              </tr><br><br>
+     				</table>
+
+            </form>
+               <div class="modal-footer">
+                 <button type="button" ng-show="enableEditForm" ng-disabled="userForm.$invalid" class="btn btn-success" value="Cancel" ng-click="updateUser(user)" data-dismiss="modal"/>Save</button>
+                 <button type="button" ng-show="!enableEditForm" ng-disabled="userForm.$invalid" class="btn btn-success" value="Cancel" ng-click="createUser(user)" data-dismiss="modal"/>Add</button>
+                 <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="cancelUpdate()">Close</button>
+               </div>
+             </div>
+
+           </div>
+         </div>
+
+       </div>
+
+		</div> <!-- End Of ng-controller -->
+  </div>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <script src="core.js"></script><!-- load angular -->
+ </body>
+</html>
