@@ -1,6 +1,6 @@
 # Todo App using Angular 1.4
 
-Run: Anjali_Indurkhya_Angular_todo_assignment/public/index.html this file and everything will work.
+Run: public/index.html this file and everything will work.
 
 bootstrap used, model is used in place of angular-routing.
 
